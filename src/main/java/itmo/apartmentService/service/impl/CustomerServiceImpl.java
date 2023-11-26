@@ -1,7 +1,8 @@
-package itmo.apartmentService.service;
+package itmo.apartmentService.service.impl;
 
 import itmo.apartmentService.jpa.entity.Customer;
 import itmo.apartmentService.jpa.repository.CustomerRepository;
+import itmo.apartmentService.service.repo.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -1,4 +1,4 @@
-package itmo.apartmentService.service;
+package itmo.apartmentService.service.repo;
 
 import org.springframework.security.core.userdetails.User;
 

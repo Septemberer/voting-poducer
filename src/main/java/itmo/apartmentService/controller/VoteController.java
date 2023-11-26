@@ -1,7 +1,7 @@
 package itmo.apartmentService.controller;
 
 import itmo.apartmentService.dto.VoteDTO;
-import itmo.apartmentService.service.VotingService;
+import itmo.apartmentService.service.async.VotingService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

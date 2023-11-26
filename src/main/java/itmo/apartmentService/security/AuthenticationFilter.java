@@ -19,23 +19,32 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
 
+	public static final String BASIC = "Basic";
+	public static final String REPLACEMENT = "";
+
 	AuthenticationFilter(final RequestMatcher requiresAuth) {
 		super(requiresAuth);
 	}
 
 	@Override
-	public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException {
+	public Authentication attemptAuthentication(HttpServletRequest httpServletRequest,
+												HttpServletResponse httpServletResponse)
+			throws AuthenticationException {
 
-		String token = !Objects.equals(httpServletRequest.getHeader(AUTHORIZATION), "") ?
-				httpServletRequest.getHeader(AUTHORIZATION) : "";
-		token = token.replaceAll("Basic", "").trim();
+		String token = !Objects.equals(httpServletRequest.getHeader(AUTHORIZATION), REPLACEMENT) ?
+				httpServletRequest.getHeader(AUTHORIZATION) : REPLACEMENT;
+		token = token.replaceAll(BASIC, REPLACEMENT).trim();
 		Authentication requestAuthentication = new UsernamePasswordAuthenticationToken(token, token);
 		return getAuthenticationManager().authenticate(requestAuthentication);
 
 	}
 
 	@Override
-	protected void successfulAuthentication(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain, final Authentication authResult) throws IOException, ServletException {
+	protected void successfulAuthentication(final HttpServletRequest request,
+											final HttpServletResponse response,
+											final FilterChain chain,
+											final Authentication authResult)
+			throws IOException, ServletException {
 		SecurityContextHolder.getContext().setAuthentication(authResult);
 		chain.doFilter(request, response);
 	}

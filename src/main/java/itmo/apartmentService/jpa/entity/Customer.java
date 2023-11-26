@@ -44,20 +44,6 @@ public class Customer {
     @Column(name = "banned")
     private boolean banned = false;
 
-    public void incPositive() {
-        karmaPositive++;
-        if (karmaPositive >= 5 && !professional) {
-            professional = true;
-        }
-    }
-
-    public void incNegative() {
-        karmaNegative++;
-        if (karmaNegative >= 5 && !banned) {
-            banned = true;
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

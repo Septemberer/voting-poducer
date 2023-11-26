@@ -1,4 +1,4 @@
-package itmo.apartmentService.service;
+package itmo.apartmentService.service.async;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package itmo.apartmentService.security;
 
-import itmo.apartmentService.service.CustomerService;
+import itmo.apartmentService.service.repo.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -33,6 +33,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
 				.ofNullable(token)
 				.map(String::valueOf)
 				.flatMap(customerService::findByToken)
-				.orElseThrow(() -> new UsernameNotFoundException("Cannot find user with authentication token=" + token));
+				.orElseThrow(() ->
+						new UsernameNotFoundException("Cannot find user with authentication token = " + token));
 	}
 }
